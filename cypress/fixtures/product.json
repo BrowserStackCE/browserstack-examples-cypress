@@ -1,0 +1,152 @@
+{
+  "P1" : {
+    "brand": "apple",
+    "device": "iPhone 12",
+    "price": 799
+  },
+
+  "P2" : {
+    "brand": "apple",
+    "device": "iPhone 12 Mini",
+    "price": 699
+  },
+
+  "P3" : {
+    "brand": "apple",
+    "device": "iPhone 12 Pro Max",
+    "price": 1099
+  },
+
+  "P4" : {
+    "brand": "apple",
+    "device": "iPhone 12 Pro",
+    "price": 999
+  },
+
+  "P5" : {
+    "brand": "apple",
+    "device": "iPhone 11",
+    "price": 599
+  },
+
+  "P6" : {
+    "brand": "apple",
+    "device": "iPhone 11 Pro",
+    "price": 699
+  },
+
+  "P7" : {
+    "brand": "apple",
+    "device": "iPhone XS",
+    "price": 549
+  },
+
+  "P8" : {
+    "brand": "apple",
+    "device": "iPhone XR",
+    "price": 499
+  },
+
+  "P9" : {
+    "brand": "apple",
+    "device": "iPhone XS Max",
+    "price": 649
+  },
+
+  "P10" : {
+    "brand": "samsung",
+    "device": "Galaxy S20",
+    "price": 999
+  },
+
+  "P11" : {
+    "brand": "samsung",
+    "device": "Galaxy S20+",
+    "price": 1199
+  },
+
+  "P12" : {
+    "brand": "samsung",
+    "device": "Galaxy S20 Ultra",
+    "price": 1399
+  },
+
+  "P13" : {
+    "brand": "samsung",
+    "device": "Galaxy S10",
+    "price": 899
+  },
+
+  "P14" : {
+    "brand": "samsung",
+    "device": "Galaxy S9",
+    "price": 699
+  },
+
+  "P15" : {
+    "brand": "samsung",
+    "device": "Galaxy Note 20",
+    "price": 999
+  },
+
+  "P16" : {
+    "brand": "samsung",
+    "device": "Galaxy Note 20 Ultra",
+    "price": 1299
+  },
+
+  "P17" : {
+    "brand": "google",
+    "device": "Pixel 4",
+    "price": 899
+  },
+
+  "P18" : {
+    "brand": "google",
+    "device": "Pixel 3",
+    "price": 599
+  },
+
+  "P19" : {
+    "brand": "google",
+    "device": "Pixel 2",
+    "price": 399
+  },
+
+  "P20" : {
+    "brand": "oneplus",
+    "device": "One Plus 8",
+    "price": 799
+  },
+
+  "P21" : {
+    "brand": "oneplus",
+    "device": "One Plus 8T",
+    "price": 899
+  },
+
+  "P22" : {
+    "brand": "oneplus",
+    "device": "One Plus 8 Pro",
+    "price": 899
+  },
+
+  "P23" : {
+    "brand": "oneplus",
+    "device": "One Plus 7T",
+    "price": 599
+  },
+
+  "P24" : {
+    "brand": "oneplus",
+    "device": "One Plus 7",
+    "price": 499
+  },
+
+  "P25" : {
+    "brand": "oneplus",
+    "device": "One Plus 6T",
+    "price": 429
+  }
+  
+}
