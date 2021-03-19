@@ -1,7 +1,7 @@
 {
     "auth": {
-      "username": "BROWSERSTACK_USERNAME",
-      "access_key": "BROWSERSTACK_ACCESS_KEY"
+      "username": "arvindr1",
+      "access_key": "JNzsLXukmxpiaaCsBhSx"
     },
     "browsers": [
       {
@@ -39,7 +39,7 @@
       "build_name": "browserstack-examples-cypress",
       "exclude": [],
       "cypress_version":"6",
-      "parallels": "10",
+      "parallels": "5",
       "npm_dependencies": {
         "cypress": "6.1.0",
         "typescript": "4.1.2",

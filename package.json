@@ -11,12 +11,12 @@
     "on-prem": "npm run cypress:run",
     "on-prem-suite": "npm run cypress:run",
     "docker": "docker-compose up",
-    "bstack-single": "browserstack-cypress --config-file run_conf/bstack-single.json --spec 'cypress/integration/e2e/test8.spec.ts' run --sync",
-    "bstack-local" : "browserstack-cypress --config-file run_conf/bstack-local-single.json  --spec 'cypress/integration/e2e/test8.spec.ts' run --sync",
-    "bstack-local-parallel": "browserstack-cypress --config-file run_conf/bstack-local-single.json run --sync",
-    "bstack-local-parallel-browsers": "browserstack-cypress --config-file run_conf/bstack-local-parallel.json run --sync",
-    "bstack-parallel": "browserstack-cypress --config-file run_conf/bstack-single.json run --sync",
-    "bstack-parallel-browsers": "browserstack-cypress --config-file run_conf/bstack-parallel.json run --sync"
+    "bstack-single": "browserstack-cypress --config-file run_conf/bstack-single.json --spec 'cypress/integration/e2e/test8.spec.ts' run --sync --parallels",
+    "bstack-local" : "browserstack-cypress --config-file run_conf/bstack-local-single.json  --spec 'cypress/integration/e2e/test8.spec.ts' run --sync --parallels",
+    "bstack-local-parallel": "browserstack-cypress --config-file run_conf/bstack-local-single.json run --sync --parallels",
+    "bstack-local-parallel-browsers": "browserstack-cypress --config-file run_conf/bstack-local-parallel.json run --sync --parallels",
+    "bstack-parallel": "browserstack-cypress --config-file run_conf/bstack-single.json run --sync --parallels",
+    "bstack-parallel-browsers": "browserstack-cypress --config-file run_conf/bstack-parallel.json run --sync --parallels"
   },
   "devDependencies": {
     "@cypress/webpack-preprocessor": "^5.4.8",
