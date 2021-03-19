@@ -1,293 +1,410 @@
-# Browserstack Examples Cypress <a href="https://www.cypress.io/"><img src="https://www.cypress.io/static/cypress-io-logo-social-share-8fb8a1db3cdc0b289fad927694ecb415.png" alt="Cypress" height="22" /></a> <a href="https://mochajs.org/"><img src="https://brandslogos.com/wp-content/uploads/images/large/mocha-logo.png" alt="Mocha" height="22" /></a> <a href="https://browserstack.com"><img src="https://camo.githubusercontent.com/799a5c97a4d00394703cf20a5de308784c5454c05726b4c6ba559397644e58d2/68747470733a2f2f643938623874316e6e756c6b352e636c6f756466726f6e742e6e65742f70726f64756374696f6e2f696d616765732f6c61796f75742f6c6f676f2d6865616465722e706e673f31343639303034373830" alt="Browserstack" height="22" /></a>
+<p align="center">
+<a href="https://browserstack.com"><img src="https://camo.githubusercontent.com/799a5c97a4d00394703cf20a5de308784c5454c05726b4c6ba559397644e58d2/68747470733a2f2f643938623874316e6e756c6b352e636c6f756466726f6e742e6e65742f70726f64756374696f6e2f696d616765732f6c61796f75742f6c6f676f2d6865616465722e706e673f31343639303034373830" alt="Browserstack" height="44" />
+</p>
 
-​
+<br/>
+
+# BrowserStack Examples Cypress <a href="https://www.cypress.io/"><img src="https://www.cypress.io/static/cypress-io-logo-social-share-8fb8a1db3cdc0b289fad927694ecb415.png" alt="Cypress" height="22" /></a> <a href="https://mochajs.org/"><img src="https://brandslogos.com/wp-content/uploads/images/large/mocha-logo.png" alt="Mocha" height="22" /></a>
+
 ## Introduction
-​
-In this repository, we will demonstrate how tests can be run across different environments.
-For this illustration we will be using a [demo-app](https://bstackdemo.com/).
-​
-## Setup
-​
-- Clone this repository 
-​
-  `git clone https://github.com/browserstack/browserstack-examples-cypress`
-- Install the following dependencies
-  - cypress >= 6.6.0
-  - typescript >= 4.1.2
-  - webpack >= 4.41.2
-  - mocha >= 8.3.2
-  - mochawesome >= 6.2.2
-  - docker-compose >= 0.23.6
-  - browserstack-cypress-cli >= 1.8.0
 
-​
-## Run your tests
-​
-Run your tests on the following infrastructures:
-​
+JCypress is a next generation front end testing tool built for the modern web. It addresses the key pain points developers and QA engineers face when testing modern applications. Mocha is a software tool that supports behavior-driven development (BDD).
+
+This BrowserStack Example repository demonstrates a Cypress framework with parallel testing capabilities. The Cypress test scripts are written for the open source [BrowserStack Demo web application](https://bstackdemo.com) ([Github](https://github.com/browserstack/browserstack-demo-app)). This BrowserStack Demo App is an e-commerce web application which showcases multiple real-world user scenarios. The app is bundled with offers data, orders data and products data that contains everything you need to start using the app and run tests out-of-the-box.
+
+The Cypress tests are run on different platforms like on-prem, docker and BrowserStack using various run configurations and test capabilities.
+
+---
+
+## Repository setup
+
+- Clone the repository
+
+- Ensure you have the following dependencies installed on the machine
+    - Cypress >= 6
+
+    node:
+    ```sh
+    npm install
+    ```
+
+## About the tests in this repository
+
+  This repository contains the following Cypress tests:
+
+  | Module   | Test name                          | Test Description |
+  | ------   | -------------                      | ------------- |
+  | E2E      | End to End Scenario                | This test scenario workflow verifies the complete and successful purchase product lifecycle on the e-commerce application. This test demonstrates the [Page Object Model design pattern](https://www.browserstack.com/guide/page-object-model-in-selenium) and is also the default test executed in all the single test run profiles. |
+  | Login    | Login with given username          | This test verifies the login workflow with different types of valid login users. |
+  | Login    | Login as Locked User               | This test verifies the login workflow error for a locked user. |
+  | Offers   | Offers for Mumbai location     | This test mocks the GPS location for Mumbai and verifies that the product offers applicable for the Mumbai location are shown.   |
+  | Product  | Apply Apple Vendor Filter          | This test verifies that the Apple products are only shown if the Apple vendor filter option is applied. |
+  | Product  | Apply Lowest to Highest Order By   | This test verifies that the product prices are in ascending order when the product sort "Lowest to Highest" is applied. |
+  | User     | Login as User with no image loaded | This test verifies that the product images load for user: "image_not_loading_user" on the e-commerce application. Since the images do not load, the test case assertion fails.|
+  | User     | Login as User with existing Orders |  This test verifies that existing orders are shown for user: "existing_orders_user"  |
+  
+  ---
+
+
+## Test infrastructure environments 
+
 - [On-premise/self-hosted](#on-premise-self-hosted)
 - [Docker](#docker)
 - [BrowserStack](#browserstack)
-​
+
+
+## Configuring the maximum parallel test threads for this repository
+
+  For all the parallel run configuration profiles, you can configure the maximum parallel test threads by changing the settings below.
+  
+  - BrowserStack
+    
+    [run_conf/bstack-\*.json]
+    [parallels] = [5]
+
+    Alternatively, you can even append a flag to the run command: --parallels 5
+
+## Test Reporting
+
+- [Allure reports](#generating-allure-reports)
+
 ---
-​
+
 # On Premise / Self Hosted
-​
-Here the test would be run in a Cypress test runner. 
-​
-## Prerequisites
-​
-- npm install
-​
-## Run Your Tests
-​
-In this part we will run the tests in different confirgurations on-premise
-​
-### Run Single Test On-Premise
-​
-In this section we will run a test on a browser on your machine in headless mode.
-​
-​
-- How to run the test?
-​
-  To run the test go to your terminal or command line and paste the following command:
-​
+
+This infrastructure points to running the tests on your own machine using the Cypress test runner.
+
+<!-- #{## Prerequisites
+
+- For this infrastructure configuration (i.e on-premise), ensure that the ChromeDriver executable is placed in the `/src/test/resources/drivers` folder.
+
+Note: The ChromeDriver version must match the Chrome browser version on your machine.} -->
+
+## Running Your Tests
+
+### Run a specific test on your own machine
+
+- How to run the test?  
+
+  To run a specific test scenario, use the following command with the spec file path as an argument:
+  
   ```sh
-  npm run on-prem "cypress/integration/<NAME_OF_TEST_SUITE>/<NAME_OF_TEST>.spec.ts"
+  npm run on-prem "cypress/integration/<TEST_SUITE_NAME>/<SPEC_FILE_NAME>.spec.ts"
   ```
-  eg: `npm run on-prem "cypress/integration/login/test4.spec.ts"`
-​
-- Output
-​
-  It will run the mentioned test. You can view the html reports along with the timestamps in the folder "cypress/report/mochawesome-report". Also, the videos would be available in "cypress/videos".
-​
-​
-### Run Tests Suites On-Premise
-​
-In this section we will run the entire test suite on a browser on your machine in headless mode.
-​
-- How to run the test?
-​
-  To run the test go to your terminal or command line and paste the following command:
-​
+
+  Example:
   ```sh
-  npm run on-prem-suite "cypress/integration/<NAME_OF_TEST_SUITE>/**/*"
+  npm run on-prem "cypress/integration/e2e/test8.spec.ts"
   ```
-​eg: `npm run on-prem-suite "cypress/integration/user/**/*"`
+
+  where,  the argument 'TEST_SUITE_NAME' can be any Cypress suite name configured in the integrations folder and 'SPEC_FILE_NAME' can be any of the spec files in that particular suite.
+  
+  E.g. "Login as username", "Login as Locked User", "Offers for mumbai geo-location" or any of the other test scenario names, as outlined in [About the tests in this repository](#About-the-tests-in-this-repository) section.
 
 - Output
-​
-  It will run each test in the suite sequentially. You can view the html reports along with the timestamps in the folder "cypress/report/mochawesome-report". Also, the videos would be available in "cypress/videos".
+
+  This run profile executes a specific test scenario on a single browser instance on your own machine within the Cypress test runner.
+
+
+### Run the entire test suite on your own machine
+
+- How to run the test?
+
+  To run the entire test suite on your own machine, use the following command:
+  
+  ```sh
+  npm run on-prem-suite "cypress/integration/<TEST_SUITE_NAME>/**/*"
+  ```
+
+  Example:
+  ```sh
+  npm run on-prem-suite "cypress/integration/user/**/*"
+  ```
+
+- Output
+
+  This run profile executes the entire test suite sequentially on a single browser, on your own machine within the Cypress test runner.
 
   
-​
 ---
-​
+
 # Docker
-​
-[Docker](https://docs.docker.com/get-started/overview/) provides the ability to run tests in containers.
-​
+
+[Docker](https://docs.docker.com/get-started/overview/) is an open source platform that provides the ability to package and test applications in an isolated environment called containers.
+
 ## Prerequisites
-​
-- [Docker and docker-compose](https://docs.docker.com/get-docker/)
-- We will be using the docker image [cypress/included](https://github.com/cypress-io/cypress-docker-images) as it contains all the operating system dependencies, the supported browsers and Cypress itself.
-- Pull the docker images according to the docker-compose file or run `docker pull cypress/included`
-​
-## Run Your Tests
-​
-In this part we will run the tests in different confirgurations on docker
-​
-### Run Tests on Docker
-​
-In this section we will run a test on a browser hosted in docker
-​
+
+- Install and start [Docker](https://docs.docker.com/get-docker/).
+- Note: Docker should be running on the test machine. Ensure Docker Compose is installed as well.
+- Run `docker-compose pull` from the current directory of the repository.
+
+## Running Your Tests
+
+### Run a specific test on the docker infrastructure
+
 - How to run the test?
-​
-  - Run the following command to create a build and run the tests:
-​
+
+  To run a specific test scenario, use the following command with the spec file path as an argument:
+
   ```sh
-  npm run docker
+  spec="cypress/integration/<TEST_SUITE_NAME>/<SPEC_FILE_NAME>.spec.ts" docker-compose up --exit-code-from cypress
+  ```
+  Example:
+  ```sh
+  spec="cypress/integration/user/test6.spec.ts" docker-compose up --exit-code-from cypress
+  ```
+  
+  where,  the argument 'TEST_SUITE_NAME' can be any Cypress suite name configured in the integrations folder and 'SPEC_FILE_NAME' can be any of the spec files in that particular suite.
+  
+  E.g. "Login as username", "Login as Locked User", "Offers for mumbai geo-location" or any of the other test scenario names, as outlined in [About the tests in this repository](#About-the-tests-in-this-repository) section.
+
+
+  - After tests are complete, you can stop the Docker by running the following command:
+      
+  ```sh
+  docker-compose down
   ```
 
-  - After the tests are complete, you can view the html reports along with the timestamps in the folder "cypress/report/mochawesome-report". Also, the videos would be available in "cypress/videos".
-​
-​
 - Output
-​
-  It will run all the tests sequentially in a docker container.
-​
-​
-<!-- ### Run Parallel Test on Docker
-​
-Run the entire test suite in parallel on a single browser, deployed on a Selenium Grid docker image
-​
+
+  This run profile executes a specific test scenario on a single browser deployed on a docker image.
+
+
+### Run the entire test suite using Docker
+
 - How to run the test?
-​
-  - Start the Selenium Grid first by running the following command:
-​
+
+    - To run the entire test suite on the docker image, use the following command:
+
   ```sh
-  docker-compose up -d
+  spec="cypress/integration/<TEST_SUITE_NAME>/**/*" docker-compose up --exit-code-from cypress
   ```
-​
-  - To run the test go to your terminal or command line and paste the following command:
-​
+
+    - After the tests are complete, you can stop the Docker by running the following command:
+
   ```sh
-  ~parallel test docker command~
+  docker-compose down
   ```
-​
-  - After the tests are complete stop the Selenium grid by running the following command:
-​
-  ```sh
-  docker-copmpose down
-  ```
-​
+
 - Output
-​
-  It will run the tests in parallel in docker -->
-​
-​
+
+  This run profile executes the entire test suite on a single browser, deployed on a docker image.
+
 ---
-​
+
 # BrowserStack
-​
- ~ Will need help from marketing here to make an effective value statement for BrowserStack
-​
+
+[BrowserStack](https://browserstack.com) provides instant access to 2,000+ real mobile devices and browsers on a highly reliable cloud infrastructure that effortlessly scales as testing needs grow.
+
 ## Prerequisites
-​
-- Navigate to [BrowserStack](https://www.browserstack.com) and create an account.
-- Once you login you will have to set the [BrowserStack username and access key](https://www.browserstack.com/accounts/settings)
-- Go to browserstack.json file and update your credentials there.
-- Export the environment variables for the Username and Access Key of your BrowserStack account.
-​
-- Clone the browserstack-canonical-app repository using `git clone https://github.com/browserstack/browserstack-demo-app`
-- Update the [caps.json](resources/conf/caps/caps.json) file according to your device/browser needs. You can find the capabilities needed from here: [browserstack-capability-generator](https://browserstack.com/automate/capabilities)
-- ~any additional lang specific setup~
-​
-## Run Your Tests
-​
-In this section we will run tests on BrowserStack infrastructure. Local tests are a part of the test suite. So we've to make sure that the local binary is up and running and "local" capability is set to "true" in browserstack.json and browserstack_single.json files.
-​
-### Run Single Test on Browserstack
-​
-In this section we will run a single the test on Chrome browser on Browserstack. To change Capabilities for this configuration refer to `single` object in `caps.json` file. Refer ['Capabilities'](https://www.browserstack.com/automate/capabilities)
-​
-- How to run the test?
-​
-  To run the test go to your terminal or command line and paste the following command:
-​
+
+- Create a new [BrowserStack account](https://www.browserstack.com/users/sign_up) or use an existing one.
+- Identify your BrowserStack username and access key from the [BrowserStack Automate Dashboard](https://automate.browserstack.com/) and export them as environment variables using the below commands.
+
+    - For \*nix based and Mac machines:
+
   ```sh
-  browserstack-cypress --config-file "browserstack_single.json" --spec "<PATH_TO_TEST_FILE>" run --sync
+  export BROWSERSTACK_USERNAME=<browserstack-username> &&
+  export BROWSERSTACK_ACCESS_KEY=<browserstack-access-key>
   ```
-​
-- Output:
-​
-  It will run test on browserstack.
-​
+
+    - For Windows:
+
+  ```shell
+  set BROWSERSTACK_USERNAME=<browserstack-username>
+  set BROWSERSTACK_ACCESS_KEY=<browserstack-access-key>
+  ```
   
-​
-### Run Tests in parallel on single browser on Browserstack
-​
-In this section we will run the tests in parallel on single browser on Browserstack. To change Capabilities for this configuration refer to `single` object in `caps.json` file.
-​
+  Alternatively, you can also hardcode username and access_key objects in each of the config files in the [run_conf](run_conf) folder.
+
+Note:
+- We have configured a list of test capabilities in in each of the config files in the [run_conf](run_conf) folder. You can certainly update them based on your device / browser test requirements. 
+- The exact test capability values can be easily identified using the [Browserstack Capability Generator](https://browserstack.com/automate/capabilities)
+
+
+## Running Your Tests
+
+### Run a specific test on BrowserStack
+
+In this section, we will run a single test on Chrome browser on Browserstack. To change test capabilities for this configuration, please refer to the [`bstack-single.json`](run_conf/bstack-single.json) file.
+
 - How to run the test?
-​
-  To run the test go to your terminal or command line and paste the following command:
-​
+  
+  - To run specific test scenario on a single BrowserStack browser, use the following command with the spec file path as an argument:
+
+  ```sh
+  npm run bstack-single --spec "cypress/integration/<TEST_SUITE_NAME>/<SPEC_FILE_NAME>.spec.ts"
+  ```
+  Example:
+  ```sh
+  npm run bstack-single --spec "cypress/integration/e2e/test8.spec.ts"
+  ```
+
+
+  where,  the argument 'TEST_SUITE_NAME' can be any Cypress suite name configured in the integrations folder and 'SPEC_FILE_NAME' can be any of the spec files in that particular suite.
+  
+  E.g. "Login as username", "Login as Locked User", "Offers for mumbai geo-location" or any of the other test scenario names, as outlined in [About the tests in this repository](#About-the-tests-in-this-repository) section.
+
+
+- Output
+
+  This run profile executes a single test on a single browser on BrowserStack. Please refer to your [BrowserStack dashboard](https://automate.browserstack.com/) for test results.
+
+
+### Run the entire test suite in parallel on a single BrowserStack browser
+
+In this section, we will run the tests in parallel on a single browser on Browserstack. To change test capabilities for this configuration, please refer to the [`bstack-single.json`](run_conf/bstack-single.json) file.
+
+- How to run the test?
+
+  To run the entire test suite in parallel on a single BrowserStack browser, use the following command:
+  
   ```sh
   npm run bstack-parallel
   ```
-​
-- Output:
-​
-  It will run tests in parallel on browserstack.
-​
-  
-### Run Tests in parallel on multiple browser on Browserstack
-​
-In this section we will run the tests in parallel on multiple browser on Browserstack. To change Capabilities for this configuration refer to `parallel` object in `caps.json` file.
-​
+
+  If you want to explicitly specifiy the number of parallel threads, then you can run it in the following way:
+
+   ```sh
+  npm run bstack-parallel --parallels 7
+  ```
+
+
+- Output
+
+  This run profile executes the entire test suite in parallel on a single BrowserStack browser. Please refer to your [BrowserStack dashboard](https://automate.browserstack.com/) for test results.
+
+  - Note: By default, this execution would run maximum 5 test threads in parallel on BrowserStack. Refer to the section ["Configuring the maximum parallel test threads for this repository"](#Configuring-the-maximum-parallel-test-threads-for-this-repository) for updating the parallel thread count based on your requirements.
+
+
+### Run the entire test suite in parallel on multiple BrowserStack browsers
+
+In this section, we will run the tests in parallel on multiple browsers on Browserstack. To change test capabilities for this configuration, please refer to the [`bstack-parallel.json`](run_conf/bstack-parallel.json) file.
+
+
 - How to run the test?
-​
-  To run the test go to your terminal or command line and paste the following command:
-​
+
+  To run the entire test suite in parallel on multiple BrowserStack browsers, use the following command:
+  
   ```sh
   npm run bstack-parallel-browsers
   ```
-​
-- Output
-​
- It will run parallel tests on different browsers on browserstack.
-​
-### Run Single Test on Browserstack Local
-​
-In this section we will run a single testcase to test internally hosted website on Browserstack. To change Capabilities for this configuration refer to `single_local` object in `caps.json` file.
-​
-- How to run the test?
-​
-  To run the test go to your terminal or command line and paste the following command:
-​
+
+### [Web application hosted on internal environment] Running your tests on BrowserStack using BrowserStackLocal
+
+#### Prerequisites
+
+- Clone the [BrowserStack demo application](https://github.com/browserstack/browserstack-demo-app) repository.
   ```sh
-  ~bstack-local command~
-  ```
-​
-- Output
-​
-  It will run a single test on a locally installed app on browserstack.
-​
-​
-​
-### Run Tests in parallel on single browser on Browserstack Local
-​
-In this section we will run the testcases to test internally hosted website in parallel on single browser on Browserstack. To change Capabilities for this configuration refer to `single_local` object in `caps.json` file.
-​
+  git clone https://github.com/browserstack/browserstack-demo-app
+  ``` 
+- Please follow the README.md on the BrowserStack demo application repository to install and start the dev server on localhost.
+- In this section, we will run a single test case to test the BrowserStack Demo app hosted on your local machine i.e. localhost. Refer to the `single_local` object in `caps.json` file to change test capabilities for this configuration.
+- Note: You may need to provide additional BrowserStackLocal arguments to successfully connect your localhost environment with BrowserStack infrastructure. (e.g if you are behind firewalls, proxy or VPN).
+- Further details for successfully creating a BrowserStackLocal connection can be found here:
+  
+  - [Local Testing with Automate](https://www.browserstack.com/local-testing/automate)
+  - [BrowserStackLocal Java GitHub](https://github.com/browserstack/browserstack-local-java)
+
+
+### [Web application hosted on internal environment] Run a specific test on BrowserStack using BrowserStackLocal
+
 - How to run the test?
-​
-  To run the test go to your terminal or command line and paste the following command:
-​
+
+  - In this section, we will run the default test on a single browser on Browserstack. To change test capabilities for this configuration, please refer to [`bstack-local-single.json`](run_conf/bstack-local-single.json) file.
+
+  - To run a specific test scenario on a single BrowserStack browser using BrowserStackLocal, use the following command with the spec file path as an argument:
+
+  ```sh
+  npm run bstack-local --spec "cypress/integration/<TEST_SUITE_NAME>/<SPEC_FILE_NAME>.spec.ts"
+  ```
+  Example:
+  ```sh
+  npm run bstack-local --spec "cypress/integration/e2e/test8.spec.ts"
+  ```
+
+  where,  the argument 'TEST_SUITE_NAME' can be any Cypress suite name configured in the integrations folder and 'SPEC_FILE_NAME' can be any of the spec files in that particular suite.
+
+  
+  E.g. "Login as username", "Login as Locked User", "Offers for mumbai geo-location" or any of the other test scenario names, as outlined in [About the tests in this repository](#About-the-tests-in-this-repository) section.
+
+
+- Output
+
+  This run profile executes a single test on an internally hosted web application on a single browser on BrowserStack. Please refer to your BrowserStack dashboard(https://automate.browserstack.com/) for test results.
+
+
+### [Web application hosted on internal environment] Run the entire test suite in parallel on a single BrowserStack browser using BrowserStackLocal
+
+In this section, we will run the test cases to test the internally hosted website in parallel on a single browser on Browserstack. To change test capabilities for this configuration, please refer to the [`bstack-local-single.json`](run_conf/bstack-local-single.json) file.
+
+- How to run the test?
+
+  To run the entire test suite in parallel on a single BrowserStack browser using BrowserStackLocal, use the following command:
+
   ```sh
   npm run bstack-local-parallel
   ```
-​
+
+  If you want to explicitly specifiy the number of parallel threads, then you can run it in the following way:
+
+   ```sh
+  npm run bstack-local-parallel --parallels 7
+  ```
+
+
 - Output
-​
- It will run tests in parallel a locally installed app on browserstack.
-​
-​
-### Run Tests in parallel on multiple browser on Browserstack Local
-​
-In this section we will run the testcases to test internally hosted website in parallel on multiple browser on Browserstack. To change Capabilities for this configuration refer to `parallel_local` object in `caps.json` file.
-​
+
+   This run profile executes the entire test suite on an internally hosted web application on a single browser on BrowserStack. Please refer to your [BrowserStack dashboard](https://automate.browserstack.com/) for test results.
+  
+- Note: By default, this execution would run maximum 5 test threads in parallel on BrowserStack. Refer to the section ["Configuring the maximum parallel test threads for this repository"](#Configuring-the-maximum-parallel-test-threads-for-this-repository) for updating the parallel thread count based on your requirements.
+
+### [Web application hosted on internal environment] Run the entire test suite in parallel on multiple BrowserStack browser using BrowserStackLocal
+
+In this section, we will run the test cases to test the internally hosted website in parallel on multiple browsers on Browserstack. To change test capabilities for this configuration, please refer to the [`bstack-local-parallel.json`](run_conf/bstack-local-parallel.json)
+
 - How to run the test?
-​
-  To run the test go to your terminal or command line and paste the following command:
-​
+
+  To run the entire test suite in parallel on a single BrowserStack browser using BrowserStackLocal, use the following command:
+
   ```sh
   npm run bstack-local-parallel-browsers
   ```
-​
+
+  If you want to explicitly specifiy the number of parallel threads, then you can run it in the following way:
+
+   ```sh
+  npm run bstack-local-parallel-browsers --parallels 7
+  ```
+
 - Output
-​
-  It will run tests in parallel on multiple browsers on browserstack.
-  
-​
----
-## Generating Reports
-​
-Generate Report using the following command: `~generate-reports-command~`
-​
----
-​
-## Notes
-​
-We  will need help in providing the right set of references from marketing since this is a public facing app
-​
-- You can view your test results on the [BrowserStack Automate dashboard](https://www.browserstack.com/automate)
-- To test on a different set of browsers, check out our [platform configurator](https://www.browserstack.com/automate/java#setting-os-and-browser)
+
+  This run profile executes the entire test suite on an internally hosted web application on multiple browsers on BrowserStack. Please refer to your [BrowserStack dashboard](https://automate.browserstack.com/) for test results.
+
+- Note: By default, this execution would run maximum 5 test threads in parallel on BrowserStack. Refer to the section ["Configuring the maximum parallel test threads for this repository"](#Configuring-the-maximum-parallel-test-threads-for-this-repository) for updating the parallel thread count based on your requirements.
+
+## Generating Videos, Screenshots and Mochawesome Reports
+
+- Whenever a test is run on-prem or on docker, mochawesome would automate generate reports in the `cypress/report/mochawesome-report` folder. Videos would be generated and stored in `cypress/videos`. Screenshots would be generated only for the failed tests and would be stored in `cypress/screenshots`.
+- When running a test on BrowserStack, these reports would not be available. However, you can run the following command to generate reports in HTML and JSON format.  
+    ```sh
+    test command here
+    ```
+
+## Additional Resources
+
+- View your test results on the [BrowserStack Automate dashboard](https://www.browserstack.com/automate)
+- Documentation for writing [Automate test scripts in Java](https://www.browserstack.com/automate/java)
+- Customizing your tests capabilities on BrowserStack using our [test capability generator](https://www.browserstack.com/automate/capabilities)
+- [List of Browsers & mobile devices](https://www.browserstack.com/list-of-browsers-and-platforms?product=automate) for automation testing on BrowserStack #{ Replace link for non-Selenium frameworks. }
+- [Using Automate REST API](https://www.browserstack.com/automate/rest-api) to access information about your tests via the command-line interface
 - Understand how many parallel sessions you need by using our [Parallel Test Calculator](https://www.browserstack.com/automate/parallel-calculator?ref=github)
-​
-## Addtional Resources
-​
-- [Documentation for writing Automate test scripts in ~lang~](~https://www.browserstack.com/automate/lang~)
-- [Customizing your tests on BrowserStack](https://www.browserstack.com/automate/capabilities)
-- [Browsers & mobile devices for selenium testing on BrowserStack](https://www.browserstack.com/list-of-browsers-and-platforms?product=automate)
-- [Using REST API to access information about your tests via the command-line interface](https://www.browserstack.com/automate/
+- For testing public web applications behind IP restriction, [Inbound IP Whitelisting](https://www.browserstack.com/local-testing/inbound-ip-whitelisting) can be enabled with the [BrowserStack Enterprise](https://www.browserstack.com/enterprise) offering
+
+## Observations
+
+ <Placeholder section for any other technical or general observations specific to the repository. If none, please remove the section>
+
+ ## Open Issues
+
+ <Placeholder section for any known open issues (some test known to not work or is flaky). If none, please remove the section>
