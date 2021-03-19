@@ -2,15 +2,23 @@ describe('Apply Lowest to Highest Order By', () => {
  
   it('Visit BrowserStack Demo Website', () => {
 
+    cy.intercept('GET', Cypress.config().baseUrl + 'api/products').as('apiCheck')
+
     cy.visit('/');
+    cy.wait('@apiCheck');
 
   })
 
   it('Order by "lowest to highest"', () => {
 
-    cy.get('.App').should('be.visible');
-  	cy.get('select').select('lowestprice');
-  	cy.wait(2000); 
+    cy.intercept({
+      method: 'GET',
+      url: Cypress.config().baseUrl + 'api/products',
+    }).as('apiCheckagain')
+
+  	cy.get('select', { timeout: 30000 }).select('lowestprice');
+ 
+    cy.wait('@apiCheckagain');
 
   })
 
@@ -19,7 +27,7 @@ describe('Apply Lowest to Highest Order By', () => {
 
   	var prices = new Array()
        
-  	cy.get('.shelf-item__price').children('.val').children('b').each(elem => {  
+  	cy.get('.shelf-item__price', { timeout: 30000 }).children('.val').children('b').each(elem => {  
 
   		prices.push(parseInt(elem.text())); 
 
