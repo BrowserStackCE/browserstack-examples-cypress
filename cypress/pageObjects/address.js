@@ -1,6 +1,6 @@
 class address{
     firstname(){
-        return cy.get('#firstNameInput')
+        return cy.get('#firstNameInput', { timeout: 30000 })
     }
     lastname(){
         return cy.get('#lastNameInput')

@@ -5,4 +5,4 @@ services:
     working_dir: /e2e
     volumes:
       - ./:/e2e
-    command: run --spec ${VAR}
+    command: run --spec ${spec}

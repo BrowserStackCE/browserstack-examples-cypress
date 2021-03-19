@@ -23,14 +23,18 @@ describe('End to End Scenario', function()  {
 
   it('Visit BrowserStack Demo Website', () => {
 
+    cy.intercept('GET', Cypress.config().baseUrl + 'api/products').as('apiCheck')
+
     cy.visit('/');
+    cy.wait('@apiCheck');
 
   })
 
   it('Click on Sign In link', () => {
-  
-    signin.load().should('be.visible')
+
+    cy.intercept('GET', Cypress.config().baseUrl + '_next/static/chunks/pages/signin**').as('signinCheck')
     signin.signinButton().click();
+    cy.wait('@signinCheck', {timeout: 30000});
 
   })
 
@@ -81,7 +85,7 @@ describe('End to End Scenario', function()  {
 
   it('Should see elements in the list', () => {
 
-    cy.get('.a-fixed-right-grid-inner.a-grid-vertical-align.a-grid-top').should('be.visible').its('length').should('equal', 3);
+    cy.get('.a-fixed-right-grid-inner.a-grid-vertical-align.a-grid-top', { "timeout" : 30000 }).should('be.visible').its('length').should('equal', 3);
 
   })
 
