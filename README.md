@@ -165,12 +165,6 @@ This infrastructure points to running the tests on your own machine using the Cy
   E.g. "Login as username", "Login as Locked User", "Offers for mumbai geo-location" or any of the other test scenario names, as outlined in [About the tests in this repository](#About-the-tests-in-this-repository) section.
 
 
-  - After tests are complete, you can stop the Docker by running the following command:
-      
-  ```sh
-  docker-compose down
-  ```
-
 - Output
 
   This run profile executes a specific test scenario on a single browser deployed on a docker image.
