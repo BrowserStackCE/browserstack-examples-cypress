@@ -1,14 +1,12 @@
-<p align="center">
-<a href="https://browserstack.com"><img src="https://camo.githubusercontent.com/799a5c97a4d00394703cf20a5de308784c5454c05726b4c6ba559397644e58d2/68747470733a2f2f643938623874316e6e756c6b352e636c6f756466726f6e742e6e65742f70726f64756374696f6e2f696d616765732f6c61796f75742f6c6f676f2d6865616465722e706e673f31343639303034373830" alt="Browserstack" height="44" />
-</p>
 
-<br/>
+
+![Logo](https://www.browserstack.com/images/static/header-logo.jpg)
 
 # BrowserStack Examples Cypress <a href="https://www.cypress.io/"><img src="https://www.cypress.io/static/cypress-io-logo-social-share-8fb8a1db3cdc0b289fad927694ecb415.png" alt="Cypress" height="22" /></a> <a href="https://mochajs.org/"><img src="https://brandslogos.com/wp-content/uploads/images/large/mocha-logo.png" alt="Mocha" height="22" /></a>
 
 ## Introduction
 
-JCypress is a next generation front end testing tool built for the modern web. It addresses the key pain points developers and QA engineers face when testing modern applications. Mocha is a software tool that supports behavior-driven development (BDD).
+Cypress is a next generation front end testing tool built for the modern web. It addresses the key pain points developers and QA engineers face when testing modern applications. Mocha is a software tool that supports behavior-driven development (BDD).
 
 This BrowserStack Example repository demonstrates a Cypress framework with parallel testing capabilities. The Cypress test scripts are written for the open source [BrowserStack Demo web application](https://bstackdemo.com) ([Github](https://github.com/browserstack/browserstack-demo-app)). This BrowserStack Demo App is an e-commerce web application which showcases multiple real-world user scenarios. The app is bundled with offers data, orders data and products data that contains everything you need to start using the app and run tests out-of-the-box.
 
@@ -34,14 +32,15 @@ The Cypress tests are run on different platforms like on-prem, docker and Browse
 
   | Module   | Test name                          | Test Description |
   | ------   | -------------                      | ------------- |
-  | E2E      | End to End Scenario                | This test scenario workflow verifies the complete and successful purchase product lifecycle on the e-commerce application. This test demonstrates the [Page Object Model design pattern](https://www.browserstack.com/guide/page-object-model-in-selenium) and is also the default test executed in all the single test run profiles. |
-  | Login    | Login with given username          | This test verifies the login workflow with different types of valid login users. |
-  | Login    | Login as Locked User               | This test verifies the login workflow error for a locked user. |
+  | e2e      | endtoend.spec.ts               | This test scenario workflow verifies the complete and successful purchase product lifecycle on the e-commerce application. This test demonstrates the [Page Object Model design pattern](https://www.browserstack.com/guide/page-object-model-in-selenium) and is also the default test executed in all the single test run profiles. |
+  | login    | Login with given username          | This test verifies the login workflow with different types of valid login users. |
+  | login    | lockedUser.spec.ts               | This test verifies the login workflow error for a locked user. |
   | Offers   | Offers for Mumbai location     | This test mocks the GPS location for Mumbai and verifies that the product offers applicable for the Mumbai location are shown.   |
-  | Product  | Apply Apple Vendor Filter          | This test verifies that the Apple products are only shown if the Apple vendor filter option is applied. |
-  | Product  | Apply Lowest to Highest Order By   | This test verifies that the product prices are in ascending order when the product sort "Lowest to Highest" is applied. |
-  | User     | Login as User with no image loaded | This test verifies that the product images load for user: "image_not_loading_user" on the e-commerce application. Since the images do not load, the test case assertion fails.|
-  | User     | Login as User with existing Orders |  This test verifies that existing orders are shown for user: "existing_orders_user"  |
+  | product  | applyVendorFilter.spec.ts          | This test verifies that only Apple and Samsung products are only shown when the Apple and Samsung vendor filter option is applied. |
+  | product  | applyLowesttoHighestOrder.spec.ts   | This test verifies that the product prices are in ascending order when the product sort "Lowest to Highest" is applied. |
+  | user     | imageNotLoading.spec.ts | This test verifies that the product images load for user: "image_not_loading_user" on the e-commerce application. Since the images do not load, the test case assertion fails.|
+  | user     | existingOrders.spec.ts |  This test verifies that existing orders are shown for user: "existing_orders_user"  |
+  | user     | addtoFavourites.spec.ts |  This test verifies that we are able to add favourites for user: "existing_orders_user"  |
   
   ---
 
@@ -74,11 +73,7 @@ The Cypress tests are run on different platforms like on-prem, docker and Browse
 
 This infrastructure points to running the tests on your own machine using the Cypress test runner.
 
-<!-- #{## Prerequisites
 
-- For this infrastructure configuration (i.e on-premise), ensure that the ChromeDriver executable is placed in the `/src/test/resources/drivers` folder.
-
-Note: The ChromeDriver version must match the Chrome browser version on your machine.} -->
 
 ## Running Your Tests
 
@@ -86,7 +81,12 @@ Note: The ChromeDriver version must match the Chrome browser version on your mac
 
 - How to run the test?  
 
-  To run a specific test scenario, use the following command with the spec file path as an argument:
+  - To run the default test scenario (e.g. End to End Scenario) on your own machine, use the following command:
+  ``` sh
+  npm run on-prem-default
+  ```
+
+  - To run a specific test scenario, use the following command with the spec file path as an argument:
   
   ```sh
   npm run on-prem "cypress/integration/<TEST_SUITE_NAME>/<SPEC_FILE_NAME>.spec.ts"
@@ -94,7 +94,7 @@ Note: The ChromeDriver version must match the Chrome browser version on your mac
 
   Example:
   ```sh
-  npm run on-prem "cypress/integration/e2e/test8.spec.ts"
+  npm run on-prem "cypress/integration/user/existingOrders.spec.ts"
   ```
 
   where,  the argument 'TEST_SUITE_NAME' can be any Cypress suite name configured in the integrations folder and 'SPEC_FILE_NAME' can be any of the spec files in that particular suite.
@@ -144,14 +144,20 @@ Note: The ChromeDriver version must match the Chrome browser version on your mac
 
 - How to run the test?
 
-  To run a specific test scenario, use the following command with the spec file path as an argument:
+  - To run the default test scenario (e.g. End to End Scenario) on docker, use the following command:
+  ``` sh
+  npm run docker-default
+  ```
+
+
+  - To run a specific test scenario, use the following command with the spec file path as an argument:
 
   ```sh
-  spec="cypress/integration/<TEST_SUITE_NAME>/<SPEC_FILE_NAME>.spec.ts" docker-compose up --exit-code-from cypress
+  spec="cypress/integration/<TEST_SUITE_NAME>/<SPEC_FILE_NAME>.spec.ts" npm run docker
   ```
   Example:
   ```sh
-  spec="cypress/integration/user/test6.spec.ts" docker-compose up --exit-code-from cypress
+  spec="cypress/integration/user/test6.spec.ts" npm run docker
   ```
   
   where,  the argument 'TEST_SUITE_NAME' can be any Cypress suite name configured in the integrations folder and 'SPEC_FILE_NAME' can be any of the spec files in that particular suite.
@@ -229,6 +235,11 @@ Note:
 In this section, we will run a single test on Chrome browser on Browserstack. To change test capabilities for this configuration, please refer to the [`bstack-single.json`](run_conf/bstack-single.json) file.
 
 - How to run the test?
+
+  - To run the default test scenario (e.g. End to End Scenario) on a single BrowserStack browser, use the following command:
+  ``` sh
+  npm run bstack-single-default
+  ```
   
   - To run specific test scenario on a single BrowserStack browser, use the following command with the spec file path as an argument:
 
@@ -237,7 +248,7 @@ In this section, we will run a single test on Chrome browser on Browserstack. To
   ```
   Example:
   ```sh
-  npm run bstack-single --spec "cypress/integration/e2e/test8.spec.ts"
+  npm run bstack-single --spec "cypress/integration/user/existingOrders.spec.ts"
   ```
 
 
@@ -299,12 +310,13 @@ In this section, we will run the tests in parallel on multiple browsers on Brows
   git clone https://github.com/browserstack/browserstack-demo-app
   ``` 
 - Please follow the README.md on the BrowserStack demo application repository to install and start the dev server on localhost.
-- In this section, we will run a single test case to test the BrowserStack Demo app hosted on your local machine i.e. localhost. Refer to the `single_local` object in `caps.json` file to change test capabilities for this configuration.
+- In this section, we will run a single test case to test the BrowserStack Demo app hosted on your local machine i.e. localhost. 
 - Note: You may need to provide additional BrowserStackLocal arguments to successfully connect your localhost environment with BrowserStack infrastructure. (e.g if you are behind firewalls, proxy or VPN).
 - Further details for successfully creating a BrowserStackLocal connection can be found here:
   
-  - [Local Testing with Automate](https://www.browserstack.com/local-testing/automate)
-  - [BrowserStackLocal Java GitHub](https://github.com/browserstack/browserstack-local-java)
+  - [Local Testing with Cypress](https://www.browserstack.com/docs/automate/cypress/local-testing)
+
+- Before we execute the test, we need to download and start the binary as per the instructions mentioned in the link above. 
 
 
 ### [Web application hosted on internal environment] Run a specific test on BrowserStack using BrowserStackLocal
@@ -313,6 +325,11 @@ In this section, we will run the tests in parallel on multiple browsers on Brows
 
   - In this section, we will run the default test on a single browser on Browserstack. To change test capabilities for this configuration, please refer to [`bstack-local-single.json`](run_conf/bstack-local-single.json) file.
 
+  - To run the default test scenario (e.g. End to End Scenario) using BrowserStackLocal, use the following command:
+  ``` sh
+  npm run bstack-local-default
+  ```
+
   - To run a specific test scenario on a single BrowserStack browser using BrowserStackLocal, use the following command with the spec file path as an argument:
 
   ```sh
@@ -320,7 +337,7 @@ In this section, we will run the tests in parallel on multiple browsers on Brows
   ```
   Example:
   ```sh
-  npm run bstack-local --spec "cypress/integration/e2e/test8.spec.ts"
+  npm run bstack-local --spec "cypress/integration/user/existingOrders.spec.ts"
   ```
 
   where,  the argument 'TEST_SUITE_NAME' can be any Cypress suite name configured in the integrations folder and 'SPEC_FILE_NAME' can be any of the spec files in that particular suite.
@@ -383,27 +400,22 @@ In this section, we will run the test cases to test the internally hosted websit
 
 - Note: By default, this execution would run maximum 5 test threads in parallel on BrowserStack. Refer to the section ["Configuring the maximum parallel test threads for this repository"](#Configuring-the-maximum-parallel-test-threads-for-this-repository) for updating the parallel thread count based on your requirements.
 
-## Generating Videos, Screenshots and Mochawesome Reports
+## Generating Videos, Screenshots and Reports
 
-- Whenever a test is run on-prem or on docker, mochawesome would automate generate reports in the `cypress/report/mochawesome-report` folder. Videos would be generated and stored in `cypress/videos`. Screenshots would be generated only for the failed tests and would be stored in `cypress/screenshots`.
-- When running a test on BrowserStack, these reports would not be available. However, you can run the following command to generate reports in HTML and JSON format.  
-    ```sh
-    test command here
-    ```
+- Whenever a test is run on-prem or on docker, Mochawesome would automate generate reports in the `cypress/report/mochawesome-report` folder. Videos would be generated and stored in `cypress/videos`. Screenshots would be generated only for the failed tests and would be stored in `cypress/screenshots`.
+- When running a test on BrowserStack, such reports would be available in the `results` folder in HTML and JSON format.  
+
 
 ## Additional Resources
 
 - View your test results on the [BrowserStack Automate dashboard](https://www.browserstack.com/automate)
-- Documentation for writing [Automate test scripts in Java](https://www.browserstack.com/automate/java)
+- Documentation for writing [Automate test scripts in Cypress](https://www.browserstack.com/docs/automate/cypress)
 - Customizing your tests capabilities on BrowserStack using our [test capability generator](https://www.browserstack.com/automate/capabilities)
-- [List of Browsers & mobile devices](https://www.browserstack.com/list-of-browsers-and-platforms?product=automate) for automation testing on BrowserStack #{ Replace link for non-Selenium frameworks. }
+- [List of Browsers & mobile devices](https://www.browserstack.com/list-of-browsers-and-platforms/cypress_testing) for automation testing on BrowserStack
 - [Using Automate REST API](https://www.browserstack.com/automate/rest-api) to access information about your tests via the command-line interface
 - Understand how many parallel sessions you need by using our [Parallel Test Calculator](https://www.browserstack.com/automate/parallel-calculator?ref=github)
 - For testing public web applications behind IP restriction, [Inbound IP Whitelisting](https://www.browserstack.com/local-testing/inbound-ip-whitelisting) can be enabled with the [BrowserStack Enterprise](https://www.browserstack.com/enterprise) offering
 
-## Observations
-
- <Placeholder section for any other technical or general observations specific to the repository. If none, please remove the section>
 
  ## Open Issues
 

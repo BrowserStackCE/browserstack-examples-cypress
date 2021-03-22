@@ -8,28 +8,28 @@
       "browser": "chrome",
       "os": "Windows 10",
       "versions": [
-        "81"
+        "89"
       ]
     },
     {
       "browser": "firefox",
-      "os": "Windows 10",
+      "os": "OS X Catalina",
       "versions": [
-        "80"
+        "86"
       ]
     },
     {
       "browser": "edge",
       "os": "OS X Mojave",
       "versions": [
-        "80"
+        "88"
       ]
     },
     {
       "browser": "chrome",
       "os": "OS X Catalina",
       "versions": [
-        "86"
+        "89"
       ]
     }
   ],
