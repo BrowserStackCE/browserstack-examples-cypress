@@ -38,7 +38,7 @@ describe('Offers for Mumbai geo-location', () => {
     it('Check Offers available or not', () => {
 
         cy.intercept('POST', Cypress.config().baseUrl + 'api/signin').as('signin')
-        cy.wait('@signin', {timeout: 30000});
+        // cy.wait('@signin', {timeout: 30000});
 
     })
   
