@@ -33,7 +33,7 @@ The Cypress tests are run on different platforms like on-prem, docker and Browse
   | Module   | Test name                          | Test Description |
   | ------   | -------------                      | ------------- |
   | e2e      | endtoend.spec.ts               | This test scenario workflow verifies the complete and successful purchase product lifecycle on the e-commerce application. This test demonstrates the [Page Object Model design pattern](https://www.browserstack.com/guide/page-object-model-in-selenium) and is also the default test executed in all the single test run profiles. |
-  | login    | Login with given username          | This test verifies the login workflow with different types of valid login users. |
+  | login    | navigatetoSignin.spec.ts          | This test verifies whether Sign In page is displayed after clicking on Favourites. |
   | login    | lockedUser.spec.ts               | This test verifies the login workflow error for a locked user. |
   | Offers   | Offers for Mumbai location     | This test mocks the GPS location for Mumbai and verifies that the product offers applicable for the Mumbai location are shown.   |
   | product  | applyVendorFilter.spec.ts          | This test verifies that only Apple and Samsung products are only shown when the Apple and Samsung vendor filter option is applied. |
