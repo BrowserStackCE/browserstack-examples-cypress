@@ -176,13 +176,12 @@ This infrastructure points to running the tests on your own machine using the Cy
     - To run the entire test suite on the docker image, use the following command:
 
   ```sh
-  spec="cypress/integration/<TEST_SUITE_NAME>/**/*" docker-compose up --exit-code-from cypress
+  spec="cypress/integration/<TEST_SUITE_NAME>/**/*" npm run docker
   ```
 
-    - After the tests are complete, you can stop the Docker by running the following command:
-
+   Example:
   ```sh
-  docker-compose down
+  spec="cypress/integration/user/**/*" npm run docker
   ```
 
 - Output
