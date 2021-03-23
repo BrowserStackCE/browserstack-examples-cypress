@@ -32,15 +32,15 @@ The Cypress tests are run on different platforms like on-prem, docker and Browse
 
   | Module   | Test name                          | Test Description |
   | ------   | -------------                      | ------------- |
-  | e2e      | endtoend.spec.ts               | This test scenario workflow verifies the complete and successful purchase product lifecycle on the e-commerce application. This test demonstrates the [Page Object Model design pattern](https://www.browserstack.com/guide/page-object-model-in-selenium) and is also the default test executed in all the single test run profiles. |
-  | login    | navigatetoSignin.spec.ts          | This test verifies whether Sign In page is displayed after clicking on Favourites. |
-  | login    | lockedUser.spec.ts               | This test verifies the login workflow error for a locked user. |
-  | offers   | offersforMumbai.spec.ts     | This test mocks the GPS location for Mumbai and verifies that the product offers applicable for the Mumbai location are shown.   |
-  | product  | applyVendorFilter.spec.ts          | This test verifies that only Apple and Samsung products are only shown when the Apple and Samsung vendor filter option is applied. |
-  | product  | applyLowesttoHighestOrder.spec.ts   | This test verifies that the product prices are in ascending order when the product sort "Lowest to Highest" is applied. |
-  | user     | imageNotLoading.spec.ts | This test verifies that the product images load for user: "image_not_loading_user" on the e-commerce application. Since the images do not load, the test case assertion fails.|
-  | user     | existingOrders.spec.ts |  This test verifies that existing orders are shown for user: "existing_orders_user"  |
-  | user     | addtoFavourites.spec.ts |  This test verifies that we are able to add favourites for user: "existing_orders_user"  |
+  | e2e      | end_to_end.spec.ts               | This test scenario workflow verifies the complete and successful purchase product lifecycle on the e-commerce application. This test demonstrates the [Page Object Model design pattern](https://www.browserstack.com/guide/page-object-model-in-selenium) and is also the default test executed in all the single test run profiles. |
+  | login    | navigate_to_signin.spec.ts          | This test verifies whether Sign In page is displayed after clicking on Favourites. |
+  | login    | locked_user.spec.ts               | This test verifies the login workflow error for a locked user. |
+  | offers   | offers_for_mumbai.spec.ts     | This test mocks the GPS location for Mumbai and verifies that the product offers applicable for the Mumbai location are shown.   |
+  | product  | filter_by_vendor.spec.ts          | This test verifies that only Apple and Samsung products are only shown when the Apple and Samsung vendor filter option is applied. |
+  | product  | sort_by_price.spec.ts   | This test verifies that the product prices are in ascending order when the product sort "Lowest to Highest" is applied. |
+  | user     | image_not_loading.spec.ts | This test verifies that the product images load for user: "image_not_loading_user" on the e-commerce application. Since the images do not load, the test case assertion fails.|
+  | user     | existing_orders.spec.ts |  This test verifies that existing orders are shown for user: "existing_orders_user"  |
+  | user     | add_to_favourites.spec.ts |  This test verifies that we are able to add favourites for user: "existing_orders_user"  |
   
   ---
 
@@ -58,14 +58,13 @@ The Cypress tests are run on different platforms like on-prem, docker and Browse
   
   - BrowserStack
     
-    [run_conf/bstack-\*.json]
-    [parallels] = [5]
-
-    Alternatively, you can even append a flag to the run command: --parallels 5
+    In the config files in `run_conf`, we can set `"parallels" : 5`.
+  
+    Alternatively, we can even append a flag to the run commands: `--parallels 5`
 
 ## Test Reporting
 
-- [Allure reports](#generating-allure-reports)
+- [Mochawesome Reports](#Generating-Videos,-Screenshots-and-Reports)
 
 ---
 
@@ -94,7 +93,7 @@ This infrastructure points to running the tests on your own machine using the Cy
 
   Example:
   ```sh
-  npm run on-prem "cypress/integration/user/existingOrders.spec.ts"
+  npm run on-prem "cypress/integration/user/existing_orders.spec.ts"
   ```
 
   where,  the argument 'TEST_SUITE_NAME' can be any Cypress suite name configured in the integrations folder and 'SPEC_FILE_NAME' can be any of the spec files in that particular suite.
@@ -157,7 +156,7 @@ This infrastructure points to running the tests on your own machine using the Cy
   ```
   Example:
   ```sh
-  spec="cypress/integration/user/test6.spec.ts" npm run docker
+  spec="cypress/integration/user/existing_orders.spec.ts" npm run docker
   ```
   
   where,  the argument 'TEST_SUITE_NAME' can be any Cypress suite name configured in the integrations folder and 'SPEC_FILE_NAME' can be any of the spec files in that particular suite.
@@ -177,13 +176,12 @@ This infrastructure points to running the tests on your own machine using the Cy
     - To run the entire test suite on the docker image, use the following command:
 
   ```sh
-  spec="cypress/integration/<TEST_SUITE_NAME>/**/*" docker-compose up --exit-code-from cypress
+  spec="cypress/integration/<TEST_SUITE_NAME>/**/*" npm run docker
   ```
 
-    - After the tests are complete, you can stop the Docker by running the following command:
-
+   Example:
   ```sh
-  docker-compose down
+  spec="cypress/integration/user/**/*" npm run docker
   ```
 
 - Output
@@ -242,7 +240,7 @@ In this section, we will run a single test on Chrome browser on Browserstack. To
   ```
   Example:
   ```sh
-  npm run bstack-single --spec "cypress/integration/user/existingOrders.spec.ts"
+  npm run bstack-single --spec "cypress/integration/user/existing_orders.spec.ts"
   ```
 
 
@@ -331,7 +329,7 @@ In this section, we will run the tests in parallel on multiple browsers on Brows
   ```
   Example:
   ```sh
-  npm run bstack-local --spec "cypress/integration/user/existingOrders.spec.ts"
+  npm run bstack-local --spec "cypress/integration/user/existing_orders.spec.ts"
   ```
 
   where,  the argument 'TEST_SUITE_NAME' can be any Cypress suite name configured in the integrations folder and 'SPEC_FILE_NAME' can be any of the spec files in that particular suite.
@@ -413,4 +411,4 @@ In this section, we will run the test cases to test the internally hosted websit
 
  ## Open Issues
 
- - The test `offers/offersforMumbai.spec.ts` does not work due to a known and recognized issue from Cypress. More information can be found [here](https://github.com/cypress-io/cypress/issues/2671).
+ - The test `offers/offers_for_mumbai.spec.ts` does not work due to a known and recognized issue from Cypress. More information can be found [here](https://github.com/cypress-io/cypress/issues/2671).
