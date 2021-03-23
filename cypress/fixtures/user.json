@@ -1,0 +1,23 @@
+{
+
+	"user1" : {
+		"username" : "locked_user",
+		"password" : "testingisfun99"
+	},
+
+	"user2" : {
+		"username" : "image_not_loading_user",
+		"password" : "testingisfun99"
+	},
+
+	"user3" : {
+		"username" : "existing_orders_user",
+		"password" : "testingisfun99"
+	},
+
+	"user4" : {
+		"username" : "fav_user",
+		"password" : "testingisfun99"
+	}
+
+}

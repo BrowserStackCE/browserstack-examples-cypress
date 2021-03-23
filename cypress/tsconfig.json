@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "types": ["cypress", "node"],
+    "rootDir": ".",
+    "sourceMap": false,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es5",
+    "module": "esnext",
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["es2017", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "noImplicitAny": false
+  },
+  "exclude": ["node_modules"],
+  "include": ["cypress/support/index.ts","**/*.ts","cypress/plugins/index.js"]
+}
+
+
