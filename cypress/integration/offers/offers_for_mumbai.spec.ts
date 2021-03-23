@@ -39,7 +39,11 @@ describe('Offers for Mumbai geo-location', () => {
 
     it('Check Offers available or not', () => {
 
-        cy.get('.shelf-item__price', { timeout: 5000 }).should('be.visible'); // this should fail
+        cy.get('.shelf-item__price', { timeout: 5000 }).should('be.visible');
+        Cypress.log({
+            name: 'Known Cypress issue',
+            message: 'Link to the issue: https://github.com/cypress-io/cypress/issues/2671'
+          }) // this should fail
 
     })
   
