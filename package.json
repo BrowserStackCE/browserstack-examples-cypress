@@ -42,5 +42,6 @@
   },
   "dependencies": {
     "browserstack-cypress-cli": "~1.8.0"
+    "browserstack-cypress-cli": "^1.8.0"
   }
 }

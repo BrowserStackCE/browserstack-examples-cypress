@@ -30,6 +30,7 @@ The Cypress tests are run on different platforms like on-prem, docker and Browse
 
   This repository contains the following Cypress tests:
 
+
   | Module   | Spec name                          | Spec Description |
   | ------   | -------------                      | ------------- |
   | e2e      | end_to_end.spec.ts               | This scenario workflow verifies the complete and successful purchase product lifecycle steps on the e-commerce application. This scenario demonstrates the [Page Object Model design pattern](https://www.browserstack.com/guide/page-object-model-in-selenium) and is also the default spec executed in all the single spec run profiles. |
@@ -41,8 +42,7 @@ The Cypress tests are run on different platforms like on-prem, docker and Browse
   | user     | image_not_loading.spec.ts | This scenario verifies that the product images load for user: "image_not_loading_user" on the e-commerce application. Since the images do not load, the test case assertion fails.|
   | user     | existing_orders.spec.ts |  This scenario verifies that existing orders are shown for user: "existing_orders_user"  |
   | user     | add_to_favourites.spec.ts |  This scenario verifies that we are able to add favourites for user: "existing_orders_user"  |
-  
-  ---
+
 
 
 ## Test infrastructure environments 
