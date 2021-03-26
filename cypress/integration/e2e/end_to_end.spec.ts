@@ -4,8 +4,8 @@ import Signin from '../../pageObjects/signin'
 import Address from '../../pageObjects/address'
 import Orders from '../../pageObjects/orders'
 
-describe('End to End Scenario', function()  {
-   
+describe('End to End Scenario', function () {
+
   const login = new Login();
   const purchase = new Purchase();
   const signin = new Signin();
@@ -14,9 +14,9 @@ describe('End to End Scenario', function()  {
 
   let user: any
   before(function () {
-      cy.fixture('user').then((data) => {
-          user = data
-      })
+    cy.fixture('user').then((data) => {
+      user = data
+    })
   })
 
   it('Visit BrowserStack Demo Website', () => {
@@ -31,40 +31,40 @@ describe('End to End Scenario', function()  {
 
     cy.intercept('GET', Cypress.config().baseUrl + '_next/static/chunks/pages/signin**').as('signinCheck')
     signin.signinButton().click();
-    cy.wait('@signinCheck', {timeout: 30000});
+    cy.wait('@signinCheck', { timeout: 30000 });
 
   })
 
-  it('Perform Login', function()  {
+  it('Perform Login', function () {
 
-    login.username().should('be.visible').click({force:true}).type(user.user4.username +'{enter}'); 
-    login.password().click({force:true}).type(user.user4.password +'{enter}');
+    login.username().should('be.visible').click({ force: true }).type(user.user4.username + '{enter}');
+    login.password().click({ force: true }).type(user.user4.password + '{enter}');
     login.logInButton().click();
 
   })
 
   it('Add three products to cart', () => {
 
-    purchase.item1().click({force:true});
-    purchase.item2().click({force:true});
-    purchase.item3().click({force:true});
-  
+    purchase.item1().click({ force: true });
+    purchase.item2().click({ force: true });
+    purchase.item3().click({ force: true });
+
   })
 
   it('Click on buy button', () => {
 
-    purchase.buyButton().click({force:true});
+    purchase.buyButton().click({ force: true });
 
   })
 
   it('Update address details', () => {
 
- 	  address.firstname().should('be.visible').type('first');
+    address.firstname().should('be.visible').type('first');
     address.lastname().type('last');
     address.addressline().type('test address');
     address.province().type('test province');
     address.postcode().type('123456');
-  
+
   })
 
   it('Make purchase and checkout', () => {
@@ -83,7 +83,7 @@ describe('End to End Scenario', function()  {
 
   it('Should see elements in the list', () => {
 
-    cy.get('.a-fixed-right-grid-inner.a-grid-vertical-align.a-grid-top', { "timeout" : 30000 }).should('be.visible').its('length').should('equal', 3);
+    cy.get('.a-fixed-right-grid-inner.a-grid-vertical-align.a-grid-top', { "timeout": 30000 }).should('be.visible').its('length').should('equal', 3);
 
   })
 
