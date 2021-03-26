@@ -1,10 +1,10 @@
-describe('Login as locked_user', function ()  {
-  
+describe('Login as locked_user', function () {
+
   let user: any
   before(function () {
-      cy.fixture('user').then((data) => {
-          user = data
-      })
+    cy.fixture('user').then((data) => {
+      user = data
+    })
   })
 
   it('Visit BrowserStack Demo Website', () => {
@@ -14,19 +14,19 @@ describe('Login as locked_user', function ()  {
     cy.wait('@apiCheck');
 
   })
-  
+
   it('Click on Sign In link', () => {
- 	
- 	  cy.intercept('GET', Cypress.config().baseUrl + '_next/static/chunks/pages/signin**').as('signinCheck')
- 	  cy.get('#signin', { timeout: 30000 }).click();
-    cy.wait('@signinCheck', {timeout: 30000});
+
+    cy.intercept('GET', Cypress.config().baseUrl + '_next/static/chunks/pages/signin**').as('signinCheck')
+    cy.get('#signin', { timeout: 30000 }).click();
+    cy.wait('@signinCheck', { timeout: 30000 });
 
   })
 
-  it('Perform Login', function()  {
+  it('Perform Login', function () {
 
-    cy.get('#username', { timeout: 30000 }).should('be.visible').click({force:true}).type(user.user1.username+'{enter}'); 
-    cy.get('#password').click({force:true}).type(user.user1.password+'{enter}');
+    cy.get('#username', { timeout: 30000 }).should('be.visible').click({ force: true }).type(user.user1.username + '{enter}');
+    cy.get('#password').click({ force: true }).type(user.user1.password + '{enter}');
     cy.get('#login-btn').click();
 
   })
@@ -35,8 +35,8 @@ describe('Login as locked_user', function ()  {
   it('Account has been locked', () => {
 
     cy.get('.api-error', { timeout: 30000 }).should('be.visible').each(elem => {
-    
-      cy.wrap(elem.text()).should('equal', 'Your account has been locked.');  
+
+      cy.wrap(elem.text()).should('equal', 'Your account has been locked.');
 
     });
 

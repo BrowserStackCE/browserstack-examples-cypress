@@ -1,5 +1,5 @@
 describe('Apply Lowest to Highest Order By', () => {
- 
+
   it('Visit BrowserStack Demo Website', () => {
 
     cy.intercept('GET', Cypress.config().baseUrl + 'api/products').as('apiCheck')
@@ -11,27 +11,27 @@ describe('Apply Lowest to Highest Order By', () => {
   it('Order by "lowest to highest"', () => {
 
     cy.intercept('GET', Cypress.config().baseUrl + 'api/products').as('apiCheckagain')
-  	cy.get('select', { timeout: 30000 }).select('lowestprice');
+    cy.get('select', { timeout: 30000 }).select('lowestprice');
     cy.wait('@apiCheckagain');
- 
+
   })
 
-  it('Should see the prices in ascending order',  () => {
+  it('Should see the prices in ascending order', () => {
 
 
-  	var prices = new Array()
-       
-  	cy.get('.shelf-item__price', { timeout: 30000 }).children('.val').children('b').each(elem => {  
+    var prices = new Array()
 
-  	  prices.push(parseInt(elem.text())); 
+    cy.get('.shelf-item__price', { timeout: 30000 }).children('.val').children('b').each(elem => {
 
-  	}).then(obj => {
+      prices.push(parseInt(elem.text()));
+
+    }).then(obj => {
 
       var prices_sort = Array.from(prices)
-      prices_sort = prices_sort.sort((a,b) => a-b)
-      for(let i=0;i<prices.length;i++){
+      prices_sort = prices_sort.sort((a, b) => a - b)
+      for (let i = 0; i < prices.length; i++) {
         expect(prices[i]).to.be.eq(prices_sort[i])
-      } 
+      }
 
     });
 
