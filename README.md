@@ -2,7 +2,7 @@
 
 ![Logo](https://www.browserstack.com/images/static/header-logo.jpg)
 
-# BrowserStack Examples Cypress <a href="https://www.cypress.io/"><img src="https://www.cypress.io/static/cypress-io-logo-social-share-8fb8a1db3cdc0b289fad927694ecb415.png" alt="Cypress" height="22" /></a> <a href="https://mochajs.org/"><img src="https://brandslogos.com/wp-content/uploads/images/large/mocha-logo.png" alt="Mocha" height="22" /></a>
+# BrowserStack Examples Cypress <a href="https://www.cypress.io/"><img src="https://www.cypress.io/static/cypress-io-logo-social-share-8fb8a1db3cdc0b289fad927694ecb415.png" alt="Cypress" height="32" /></a> <a href="https://mochajs.org/"><img src="https://avatars.githubusercontent.com/u/8770005?s=400&v=4" alt="Mocha" height="32" /></a>
 
 ## Introduction
 
@@ -30,19 +30,19 @@ The Cypress tests are run on different platforms like on-prem, docker and Browse
 
   This repository contains the following Cypress tests:
 
-  | Module   | Test name                          | Test Description |
+
+  | Module   | Spec name                          | Spec Description |
   | ------   | -------------                      | ------------- |
-  | e2e      | end_to_end.spec.ts               | This test scenario workflow verifies the complete and successful purchase product lifecycle on the e-commerce application. This test demonstrates the [Page Object Model design pattern](https://www.browserstack.com/guide/page-object-model-in-selenium) and is also the default test executed in all the single test run profiles. |
-  | login    | navigate_to_signin.spec.ts          | This test verifies whether Sign In page is displayed after clicking on Favourites. |
-  | login    | locked_user.spec.ts               | This test verifies the login workflow error for a locked user. |
-  | offers   | offers_for_mumbai.spec.ts     | This test mocks the GPS location for Mumbai and verifies that the product offers applicable for the Mumbai location are shown.   |
-  | product  | filter_by_vendor.spec.ts          | This test verifies that only Apple and Samsung products are only shown when the Apple and Samsung vendor filter option is applied. |
-  | product  | sort_by_price.spec.ts   | This test verifies that the product prices are in ascending order when the product sort "Lowest to Highest" is applied. |
-  | user     | image_not_loading.spec.ts | This test verifies that the product images load for user: "image_not_loading_user" on the e-commerce application. Since the images do not load, the test case assertion fails.|
-  | user     | existing_orders.spec.ts |  This test verifies that existing orders are shown for user: "existing_orders_user"  |
-  | user     | add_to_favourites.spec.ts |  This test verifies that we are able to add favourites for user: "existing_orders_user"  |
-  
-  ---
+  | e2e      | end_to_end.spec.ts               | This scenario workflow verifies the complete and successful purchase product lifecycle steps on the e-commerce application. This scenario demonstrates the [Page Object Model design pattern](https://www.browserstack.com/guide/page-object-model-in-selenium) and is also the default spec executed in all the single spec run profiles. |
+  | login    | navigate_to_signin.spec.ts          | This scenario verifies whether Sign In page is displayed after clicking on Favourites. |
+  | login    | locked_user.spec.ts               | This scenario verifies the login workflow error for a locked user. |
+  | offers   | offers_for_mumbai.spec.ts     | This scenario mocks the GPS location for Mumbai and verifies that the product offers applicable for the Mumbai location are shown.   |
+  | product  | filter_by_vendor.spec.ts          | This scenario verifies that only Apple and Samsung products are only shown when the Apple and Samsung vendor filter option is applied. |
+  | product  | sort_by_price.spec.ts   | This scenario verifies that the product prices are in ascending order when the product sort "Lowest to Highest" is applied. |
+  | user     | image_not_loading.spec.ts | This scenario verifies that the product images load for user: "image_not_loading_user" on the e-commerce application. Since the images do not load, the test case assertion fails.|
+  | user     | existing_orders.spec.ts |  This scenario verifies that existing orders are shown for user: "existing_orders_user"  |
+  | user     | add_to_favourites.spec.ts |  This scenario verifies that we are able to add favourites for user: "existing_orders_user"  |
+
 
 
 ## Test infrastructure environments 
@@ -412,3 +412,4 @@ In this section, we will run the test cases to test the internally hosted websit
  ## Open Issues
 
  - The test `offers/offers_for_mumbai.spec.ts` does not work due to a known and recognized issue from Cypress. More information can be found [here](https://github.com/cypress-io/cypress/issues/2671).
+ - Warning message `Couldn't find tsconfig.json. tsconfig-paths will be skipped` is seen because of an open issue which can be found [here](https://github.com/cypress-io/cypress/issues/9048).
