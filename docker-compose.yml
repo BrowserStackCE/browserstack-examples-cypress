@@ -1,0 +1,8 @@
+version: '3.2'
+services:
+  cypress:
+    image: "cypress/included:6.1.0"
+    working_dir: /e2e
+    volumes:
+      - ./:/e2e
+    command: run --spec ${spec}

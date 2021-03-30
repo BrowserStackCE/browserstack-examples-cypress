@@ -1,0 +1,24 @@
+{
+    "baseUrl":"http://localhost:3000/",
+    "fileServerFolder": ".",
+    "testFiles": "**/*.spec.ts",
+    "fixturesFolder": "cypress/fixtures",
+    "integrationFolder": "cypress/integration",
+    "pluginsFile": false,
+    "supportFile": false,
+    "snapshots": true,
+    "trashAssetsBeforeRuns": true,
+    "reporter":"mochawesome",
+    "chromeWebSecurity": false,
+    "pageLoadTimeout": 60000,
+    "reporterOptions":{
+      "reportDir": "cypress/report/mochawesome-report",
+      "reportFilename": "testReport",
+      "charts":true,
+      "overwrite":false,
+      "html":true,
+      "json":false,
+      "timestamp" : "mm/dd/yyyy_HH:MM:ss"
+    }
+  }
+  
