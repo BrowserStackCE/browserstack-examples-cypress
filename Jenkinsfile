@@ -60,6 +60,16 @@ bstack-local-parallel-browsers''',
 				'''
 			}
 		}
+
+		stage('Stop Local') {
+			if ( "${params.TEST_TYPE}".contains('local') ) {
+				sh '''
+					ps -ax | grep npm | grep -v grep | awk '{ print $1 }' | xargs kill -9
+				'''
+			} else {
+				Utils.markStageSkippedForConditional('Start Local')
+			}
+		}
 	} catch (e) {
 		currentBuild.result = 'FAILURE'
 		throw e
