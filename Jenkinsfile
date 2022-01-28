@@ -2,6 +2,8 @@ import org.jenkinsci.plugins.pipeline.modeldefinition.Utils
 
 node {
 	try {
+		skipDefaultCheckout(true)
+
 		properties([
 			parameters([
 				credentials(credentialType: 'com.browserstack.automate.ci.jenkins.BrowserStackCredentials', defaultValue: '', description: 'Select your BrowserStack Username', name: 'BROWSERSTACK_USERNAME', required: true),
@@ -22,6 +24,12 @@ bstack-local-parallel-browsers''',
 				name: 'TEST_TYPE']
 			])
 		])
+
+		stage('Setup') {
+			cleanWs()
+			// We need to explicitly checkout from SCM here
+			checkout scm
+		}
 
 		stage('Pull from Github') {
 			dir('test') {
