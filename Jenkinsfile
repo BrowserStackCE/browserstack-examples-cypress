@@ -29,21 +29,6 @@ bstack-local-parallel-browsers''',
 			}
 		}
 
-		stage('Start Local') {
-			if ( "${params.TEST_TYPE}".contains('local') ) {
-				dir('app') {
-					git branch: 'master', url: 'https://github.com/browserstack/browserstack-demo-app'
-					sh '''
-						npm install
-						npm run build
-						npm start &
-					'''
-				}
-			} else {
-				Utils.markStageSkippedForConditional('Start Local')
-			}
-		}
-
 		stage('Install Dependencies'){
 			sh '''
 				cd test
@@ -58,16 +43,6 @@ bstack-local-parallel-browsers''',
 					cd test
 					npm run ${TEST_TYPE}
 				'''
-			}
-		}
-
-		stage('Stop Local') {
-			if ( "${params.TEST_TYPE}".contains('local') ) {
-				sh '''
-					ps -ax | grep npm | grep -v grep | awk '{ print $1 }' | xargs kill -9
-				'''
-			} else {
-				Utils.markStageSkippedForConditional('Start Local')
 			}
 		}
 	} catch (e) {
