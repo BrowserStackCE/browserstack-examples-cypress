@@ -63,10 +63,6 @@ bstack-local-parallel-browsers''',
 	} catch (e) {
 		currentBuild.result = 'FAILURE'
 		throw e
-	} finally {
-		stage('Publish Results'){
-			browserStackReportPublisher 'automate'
-		}
 	}
 }
 
