@@ -46,11 +46,20 @@ bstack-local-parallel-browsers''',
 		}
 
 		stage('Run Test(s)') {
-			browserstack(credentialsId: "${params.BROWSERSTACK_USERNAME}") {
-				sh returnStatus:true,script: '''
-					cd test
-					npm run ${TEST_TYPE}
-				'''
+			if("${params.TEST_TYPE}".contains('bstack-local')){
+				browserstack(credentialsId: "${params.BROWSERSTACK_USERNAME}", localConfig: [localOptions: '', localPath: '']) {
+					sh returnStatus:true,script: '''
+						cd test
+						npm run ${TEST_TYPE}
+					'''
+				}
+			} else {
+				browserstack(credentialsId: "${params.BROWSERSTACK_USERNAME}") {
+					sh returnStatus:true,script: '''
+						cd test
+						npm run ${TEST_TYPE}
+					'''
+				}
 			}
 		}
 	} catch (e) {
