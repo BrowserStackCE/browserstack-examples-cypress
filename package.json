@@ -18,19 +18,18 @@
 		"bstack-single-default": "browserstack-cypress --config-file run_conf/bstack-single.json run --sync --spec 'cypress/integration/e2e/end_to_end.spec.ts'",
 		"bstack-local": "browserstack-cypress --config-file run_conf/bstack-local-single.json run --sync --spec --parallels 1",
 		"bstack-local-default": "browserstack-cypress --config-file run_conf/bstack-local-single.json run --sync --spec 'cypress/integration/e2e/end_to_end.spec.ts'",
-		"bstack-local-parallel": "browserstack-cypress --config-file run_conf/bstack-local-single.json run --sync --parallels 5",
-		"bstack-local-parallel-browsers": "browserstack-cypress --config-file run_conf/bstack-local-parallel.json run --sync --parallels 5",
-		"bstack-parallel": "browserstack-cypress --config-file run_conf/bstack-single.json run --sync --parallels 5",
-		"bstack-parallel-browsers": "browserstack-cypress --config-file run_conf/bstack-parallel.json run --sync --parallels 5"
+		"bstack-local-parallel": "browserstack-cypress --config-file run_conf/bstack-local-single.json run --sync --parallels",
+		"bstack-local-parallel-browsers": "browserstack-cypress --config-file run_conf/bstack-local-parallel.json run --sync --parallels",
+		"bstack-parallel": "browserstack-cypress --config-file run_conf/bstack-single.json run --sync --parallels",
+		"bstack-parallel-browsers": "browserstack-cypress --config-file run_conf/bstack-parallel.json run --sync --parallels"
 	},
 	"devDependencies": {
 		"@cypress/webpack-preprocessor": "~5.4.8",
-		"@nrwl/cypress": "~11.4.0",
 		"@types/chance": "1.1.0",
 		"@types/node": "~8.9.4",
 		"browserstack-local": "~1.4.8",
 		"chance": "~1.1.7",
-		"cypress": "~6.1.0",
+		"cypress": "^9.5.4",
 		"docker-compose": "~0.23.6",
 		"eslint": "^7.21.0",
 		"eslint-plugin-cypress": "~2.11.2",
@@ -41,6 +40,6 @@
 		"webpack": "4.41.2"
 	},
 	"dependencies": {
-		"browserstack-cypress-cli": "~1.8.0"
+		"browserstack-cypress-cli": "^1.14.0"
 	}
 }
