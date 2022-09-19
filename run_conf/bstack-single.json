@@ -18,7 +18,7 @@
     "build_name": "browserstack-examples-cypress",
     "exclude": [],
     "cypress_version" : "9.latest",
-    "parallels": "5",
+    "parallels": "1",
     "npm_dependencies": {
       "typescript": "4.1.2",
       "webpack": "4.41.2",
