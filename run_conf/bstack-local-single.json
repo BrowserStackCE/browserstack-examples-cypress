@@ -7,17 +7,15 @@
     {
       "browser": "chrome",
       "os": "Windows 10",
-      "versions": [
-        "88"
-      ]
+      "versions": ["88"]
     }
   ],
   "run_settings": {
-    "cypress_config_file": "cypress_local.json",
+    "cypress_config_file": "cypress_local.config.ts",
     "project_name": "BrowserStack",
     "build_name": "browserstack-examples-cypress",
     "exclude": [],
-    "cypress_version":"9.latest",
+    "cypress_version": "12",
     "parallels": "5",
     "npm_dependencies": {
       "typescript": "4.1.2",
@@ -36,4 +34,3 @@
   },
   "disable_usage_reporting": false
 }
-  
