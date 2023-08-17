@@ -33,7 +33,7 @@ bstack-local-parallel-browsers''',
 
 		stage('Pull from Github') {
 			dir('test') {
-				git branch: 'develop', changelog: false, poll: false, url: 'https://github.com/browserstack/browserstack-examples-cypress.git'
+				git branch: 'main', changelog: false, poll: false, url: 'https://github.com/browserstack/browserstack-examples-cypress.git'
 			}
 		}
 
