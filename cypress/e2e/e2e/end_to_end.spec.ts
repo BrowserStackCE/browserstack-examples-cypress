@@ -25,39 +25,19 @@ describe('End to End Scenario', function () {
     cy.visit('/');
     cy.wait('@apiCheck');
 
-  })
-
-  it('Click on Sign In link', () => {
-
     cy.intercept('GET', Cypress.config().baseUrl + '_next/static/chunks/pages/signin**').as('signinCheck')
     signin.signinButton().click();
     cy.wait('@signinCheck', { timeout: 30000 });
-
-  })
-
-  it('Perform Login', function () {
 
     login.username().should('be.visible').click({ force: true }).type(user.user4.username + '{enter}');
     login.password().click({ force: true }).type(user.user4.password + '{enter}');
     login.logInButton().click();
 
-  })
-
-  it('Add three products to cart', () => {
-
     purchase.item1().click({ force: true });
     purchase.item2().click({ force: true });
     purchase.item3().click({ force: true });
 
-  })
-
-  it('Click on buy button', () => {
-
     purchase.buyButton().click({ force: true });
-
-  })
-
-  it('Update address details', () => {
 
     address.firstname().should('be.visible').type('first');
     address.lastname().type('last');
@@ -65,23 +45,11 @@ describe('End to End Scenario', function () {
     address.province().type('test province');
     address.postcode().type('123456');
 
-  })
-
-  it('Make purchase and checkout', () => {
-
     orders.checkout().click();
-
-  })
-
-  it('Go to Orders', () => {
 
     orders.return().click();
     cy.wait(3000);
     orders.orders().click();
-
-  })
-
-  it('Should see elements in the list', () => {
 
     cy.get('.a-fixed-right-grid-inner.a-grid-vertical-align.a-grid-top', { "timeout": 30000 }).should('be.visible').its('length').should('equal', 3);
 

@@ -6,25 +6,13 @@ describe('Apply Lowest to Highest Order By', () => {
     cy.visit('/');
     cy.wait('@apiCheck');
 
-  })
-
-  it('Order by "lowest to highest"', () => {
-
     cy.intercept('GET', Cypress.config().baseUrl + 'api/products').as('apiCheckagain')
     cy.get('select', { timeout: 30000 }).select('lowestprice');
     cy.wait('@apiCheckagain');
 
-  })
-
-  it('Should see the prices in ascending order', () => {
-
-
     var prices = new Array()
-
     cy.get('.shelf-item__price', { timeout: 30000 }).children('.val').children('b').each(elem => {
-
       prices.push(parseInt(elem.text()));
-
     }).then(obj => {
 
       var prices_sort = Array.from(prices)
@@ -32,10 +20,7 @@ describe('Apply Lowest to Highest Order By', () => {
       for (let i = 0; i < prices.length; i++) {
         expect(prices[i]).to.be.eq(prices_sort[i])
       }
-
     });
-
   })
-
 
 });

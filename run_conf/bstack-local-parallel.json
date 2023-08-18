@@ -1,60 +1,51 @@
 {
-    "auth": {
-      "username": "BROWSERSTACK_USERNAME",
-      "access_key": "BROWSERSTACK_ACCESS_KEY"
+  "auth": {
+    "username": "BROWSERSTACK_USERNAME",
+    "access_key": "BROWSERSTACK_ACCESS_KEY"
+  },
+  "browsers": [
+    {
+      "browser": "chrome",
+      "os": "Windows 10",
+      "versions": ["latest"]
     },
-    "browsers": [
-      {
-        "browser": "chrome",
-        "os": "Windows 10",
-        "versions": [
-          "latest"
-        ]
-      },
-      {
-        "browser": "firefox",
-        "os": "OS X Big Sur",
-        "versions": [
-          "latest"
-        ]
-      },
-      {
-        "browser": "edge",
-        "os": "Windows 10",
-        "versions": [
-          "latest"
-        ]
-      },
-      {
-        "browser": "chrome",
-        "os": "OS X Catalina",
-        "versions": [
-          "latest"
-        ]
-      }
-    ],
-    "run_settings": {
-      "cypress_config_file": "cypress_local.json",
-      "project_name": "BrowserStack",
-      "build_name": "browserstack-examples-cypress",
-      "exclude": [],
-      "cypress_version":"9.latest",
-      "parallels": "5",
-      "npm_dependencies": {
-        "typescript": "4.1.2",
-        "webpack": "4.41.2",
-        "ts-loader": "^8.0.7",
-        "@cypress/webpack-preprocessor": "^5.4.8",
-        "@types/node": "8.9.4",
-        "@types/chance": "1.1.0",
-        "chance": "^1.1.7",
-        "mochawesome": "^6.2.2"
-      },
-      "package_config_options": {}
+    {
+      "browser": "firefox",
+      "os": "OS X Big Sur",
+      "versions": ["latest"]
     },
-    "connection_settings": {
-      "local": true
+    {
+      "browser": "edge",
+      "os": "Windows 10",
+      "versions": ["latest"]
     },
-    "disable_usage_reporting": false
-  }
-  
+    {
+      "browser": "chrome",
+      "os": "OS X Catalina",
+      "versions": ["latest"]
+    }
+  ],
+  "run_settings": {
+    "cypress_config_file": "cypress_local.config.ts",
+    "project_name": "BrowserStack",
+    "build_name": "browserstack-examples-cypress",
+    "exclude": [],
+    "cypress_version": "12",
+    "parallels": "5",
+    "npm_dependencies": {
+      "typescript": "4.1.2",
+      "webpack": "4.41.2",
+      "ts-loader": "^8.0.7",
+      "@cypress/webpack-preprocessor": "^5.4.8",
+      "@types/node": "8.9.4",
+      "@types/chance": "1.1.0",
+      "chance": "^1.1.7",
+      "mochawesome": "^6.2.2"
+    },
+    "package_config_options": {}
+  },
+  "connection_settings": {
+    "local": true
+  },
+  "disable_usage_reporting": false
+}

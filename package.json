@@ -1,45 +1,45 @@
 {
-	"name": "browserstack-examples-cypress",
-	"version": "1.0.0",
-	"main": "index.js",
-	"license": "MIT",
-	"scripts": {
-		"test": "npm run cypress:run 'cypress/integration/e2e/end_to_end.spec.ts'",
-		"clean:reports": "rm -rf cypress/report/ && rm -rf cypress/videos/ && rm -rf cypress/screenshots/",
-		"cypress:run": "npm run clean:reports && npx cypress run --config-file cypress.json --spec",
-		"cypress:open": "cypress open",
-		"lint": "npx eslint --ext .ts,.js .",
-		"on-prem": "npm run cypress:run",
-		"on-prem-default": "npm run cypress:run 'cypress/integration/e2e/end_to_end.spec.ts'",
-		"on-prem-suite": "npm run cypress:run",
-		"docker": "npm run clean:reports && docker-compose up && docker-compose down",
-		"docker-default": "npm run clean:reports && spec='cypress/integration/e2e/end_to_end.spec.ts' docker-compose up && docker-compose down",
-		"bstack-single": "browserstack-cypress --config-file run_conf/bstack-single.json run --sync --spec --parallels 1",
-		"bstack-single-default": "browserstack-cypress --config-file run_conf/bstack-single.json run --sync --spec 'cypress/integration/e2e/end_to_end.spec.ts'",
-		"bstack-local": "browserstack-cypress --config-file run_conf/bstack-local-single.json run --sync --spec --parallels 1",
-		"bstack-local-default": "browserstack-cypress --config-file run_conf/bstack-local-single.json run --sync --spec 'cypress/integration/e2e/end_to_end.spec.ts'",
-		"bstack-local-parallel": "browserstack-cypress --config-file run_conf/bstack-local-single.json run --sync --parallels",
-		"bstack-local-parallel-browsers": "browserstack-cypress --config-file run_conf/bstack-local-parallel.json run --sync --parallels",
-		"bstack-parallel": "browserstack-cypress --config-file run_conf/bstack-single.json run --sync --parallels",
-		"bstack-parallel-browsers": "browserstack-cypress --config-file run_conf/bstack-parallel.json run --sync --parallels"
-	},
-	"devDependencies": {
-		"@cypress/webpack-preprocessor": "~5.4.8",
-		"@types/chance": "1.1.0",
-		"@types/node": "~8.9.4",
-		"browserstack-local": "~1.4.8",
-		"chance": "~1.1.7",
-		"cypress": "^9.5.4",
-		"docker-compose": "~0.23.6",
-		"eslint": "^7.21.0",
-		"eslint-plugin-cypress": "~2.11.2",
-		"mocha": "~8.3.2",
-		"mochawesome": "~6.2.2",
-		"ts-loader": "~8.0.7",
-		"typescript": "4.1.2",
-		"webpack": "4.41.2"
-	},
-	"dependencies": {
-		"browserstack-cypress-cli": "^1.14.0"
-	}
+  "name": "browserstack-examples-cypress",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "test": "npm run cypress:run -- --spec 'cypress/e2e/e2e/end_to_end.spec.ts'",
+    "clean:reports": "rm -rf cypress/report/ && rm -rf cypress/videos/ && rm -rf cypress/screenshots/",
+    "cypress:run": "npm run clean:reports && npx cypress run --config-file cypress.config.ts",
+    "cypress:open": "cypress open",
+    "lint": "npx eslint --ext .ts,.js .",
+    "on-prem": "npm run cypress:run",
+    "on-prem-default": "npm run cypress:run -- --spec 'cypress/e2e/e2e/end_to_end.spec.ts'",
+    "on-prem-suite": "npm run cypress:run",
+    "docker": "npm run clean:reports && docker-compose up && docker-compose down",
+    "docker-default": "npm run clean:reports && spec='cypress/e2e/e2e/end_to_end.spec.ts' docker-compose up && docker-compose down",
+    "bstack-single": "browserstack-cypress --config-file run_conf/bstack-single.json run --sync --spec --parallels 1",
+    "bstack-single-default": "browserstack-cypress --config-file run_conf/bstack-single.json run --sync --spec 'cypress/e2e/e2e/end_to_end.spec.ts'",
+    "bstack-local": "browserstack-cypress --config-file run_conf/bstack-local-single.json run --sync --spec --parallels 1",
+    "bstack-local-default": "browserstack-cypress --config-file run_conf/bstack-local-single.json run --sync --spec 'cypress/e2e/e2e/end_to_end.spec.ts'",
+    "bstack-local-parallel": "browserstack-cypress --config-file run_conf/bstack-local-single.json run --sync --parallels",
+    "bstack-local-parallel-browsers": "browserstack-cypress --config-file run_conf/bstack-local-parallel.json run --sync --parallels",
+    "bstack-parallel": "browserstack-cypress --config-file run_conf/bstack-single.json run --sync --parallels",
+    "bstack-parallel-browsers": "browserstack-cypress --config-file run_conf/bstack-parallel.json run --sync --parallels"
+  },
+  "devDependencies": {
+    "@cypress/webpack-preprocessor": "~5.4.8",
+    "@types/chance": "1.1.0",
+    "@types/node": "~8.9.4",
+    "browserstack-local": "~1.4.8",
+    "chance": "~1.1.7",
+    "cypress": "^12.17.4",
+    "docker-compose": "~0.23.6",
+    "eslint": "^7.21.0",
+    "eslint-plugin-cypress": "~2.11.2",
+    "mocha": "~8.3.2",
+    "mochawesome": "~6.2.2",
+    "ts-loader": "~8.0.7",
+    "typescript": "4.1.2",
+    "webpack": "4.41.2"
+  },
+  "dependencies": {
+    "browserstack-cypress-cli": "^1.25.0"
+  }
 }
