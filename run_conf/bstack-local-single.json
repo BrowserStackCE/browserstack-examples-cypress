@@ -7,7 +7,7 @@
     {
       "browser": "chrome",
       "os": "Windows 10",
-      "versions": ["88"]
+      "versions": ["latest"]
     }
   ],
   "run_settings": {
